@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Canvas – Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/cart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">Dream Canvas</a></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="cart.html" class="cart-icon"
+              >Cart <span class="cart-count">0</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="checkout-container">
+      <h2>Checkout</h2>
+      <div id="order-summary" class="order-summary"></div>
+      <form id="checkout-form" class="checkout-form">
+        <h3>Contact Details</h3>
+        <label>
+          Full Name
+          <input type="text" id="cust-name" required />
+        </label>
+        <label>
+          Email Address
+          <input type="email" id="cust-email" required />
+        </label>
+        <label>
+          Shipping Address
+          <textarea id="cust-address" required></textarea>
+        </label>
+        <button type="submit" class="btn primary">Place Order</button>
+      </form>
+      <p id="thanks-message" style="display:none; text-align:center; margin-top:2rem;"></p>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2025 Dream Canvas. All rights reserved. Please note: for this
+        demo site payments are not processed automatically; after placing your
+        order we will contact you to arrange payment and delivery.
+      </p>
+    </footer>
+
+    <script>
+      function renderOrderSummary() {
+        const summaryDiv = document.getElementById('order-summary');
+        const cart = getCart();
+        if (cart.length === 0) {
+          summaryDiv.innerHTML = '<p>Your cart is empty. <a href="gallery.html">Go back to the gallery</a> to add items.</p>';
+          document.getElementById('checkout-form').style.display = 'none';
+          return;
+        }
+        let total = 0;
+        let html = '<h3>Your Order</h3><ul>';
+        cart.forEach(item => {
+          const subtotal = item.price * item.quantity;
+          total += subtotal;
+          html += `<li>${item.quantity} × ${item.title} <span>£${subtotal.toFixed(2)}</span></li>`;
+        });
+        html += '</ul>';
+        html += `<div class="cart-summary">Total: £${total.toFixed(2)}</div>`;
+        summaryDiv.innerHTML = html;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderOrderSummary();
+        const form = document.getElementById('checkout-form');
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const name = document.getElementById('cust-name').value.trim();
+          const email = document.getElementById('cust-email').value.trim();
+          const address = document.getElementById('cust-address').value.trim();
+          if (!name || !email || !address) {
+            alert('Please fill in all fields.');
+            return;
+          }
+          // Simulate order submission; clear cart and show thank you message
+          clearCart();
+          renderOrderSummary();
+          form.style.display = 'none';
+          const thanksMsg = document.getElementById('thanks-message');
+          thanksMsg.textContent = `Thank you, ${name}! Your order has been received. We will contact you shortly at ${email} to arrange payment and delivery.`;
+          thanksMsg.style.display = 'block';
+        });
+      });
+    </script>
+  </body>
+</html>
