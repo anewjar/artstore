@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Canvas – Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/cart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">Dream Canvas</a></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="cart.html" class="cart-icon"
+              >Cart <span class="cart-count">0</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="page-header">
+        <h2>Our Collection</h2>
+        <p>Browse the current selection of available paintings.</p>
+      </div>
+      <div class="products-grid">
+        <!-- Product 1: Dreamscape -->
+        <div class="product-card">
+          <img src="images/dreamscape.png" alt="Dreamscape painting" />
+          <div class="product-info">
+            <h4>Dreamscape</h4>
+            <p>
+              A vibrant swirl of colours that invites you into an abstract
+              dream world.
+            </p>
+            <div class="price">£150</div>
+            <button
+              class="btn primary"
+              onclick="addToCart('dreamscape','Dreamscape',150,'images/dreamscape.png')"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <!-- Product 2: Serenity -->
+        <div class="product-card">
+          <img src="images/serenity.png" alt="Serenity painting" />
+          <div class="product-info">
+            <h4>Serenity</h4>
+            <p>
+              Soft pastel gradients evoke a peaceful horizon and gentle waves.
+            </p>
+            <div class="price">£120</div>
+            <button
+              class="btn primary"
+              onclick="addToCart('serenity','Serenity',120,'images/serenity.png')"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <!-- Product 3: Cosmic Dance -->
+        <div class="product-card">
+          <img src="images/cosmic_dance.png" alt="Cosmic Dance painting" />
+          <div class="product-info">
+            <h4>Cosmic Dance</h4>
+            <p>
+              A cosmic whirlpool of fiery orange and cool blues capturing the
+              energy of the universe.
+            </p>
+            <div class="price">£200</div>
+            <button
+              class="btn primary"
+              onclick="addToCart('cosmic','Cosmic Dance',200,'images/cosmic_dance.png')"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <!-- Product 4: Urban Rhythm -->
+        <div class="product-card">
+          <img src="images/urban_rhythm.png" alt="Urban Rhythm painting" />
+          <div class="product-info">
+            <h4>Urban Rhythm</h4>
+            <p>
+              Bold geometric forms and bright hues echo the pulsating rhythm of
+              the city.
+            </p>
+            <div class="price">£180</div>
+            <button
+              class="btn primary"
+              onclick="addToCart('urban','Urban Rhythm',180,'images/urban_rhythm.png')"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2025 Dream Canvas. All rights reserved. Our gallery page uses a
+        clean grid layout to let the artwork speak for itself, inspired by
+        minimalist gallery examples【983667171507147†L120-L136】.
+      </p>
+    </footer>
+  </body>
+</html>
