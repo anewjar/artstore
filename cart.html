@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Canvas – Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/cart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">Dream Canvas</a></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="cart.html" class="cart-icon"
+              >Cart <span class="cart-count">0</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="cart-container">
+      <h2>Your Cart</h2>
+      <div id="cart-items" class="cart-items"></div>
+      <div id="cart-summary" class="cart-summary"></div>
+      <div class="cart-actions" id="cart-actions" style="display: none">
+        <a href="gallery.html" class="btn secondary">Continue Shopping</a>
+        <a href="checkout.html" class="btn primary" id="checkout-btn">Checkout</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2025 Dream Canvas. All rights reserved. Our cart page allows you
+        to adjust quantities or remove items before proceeding to checkout.
+      </p>
+    </footer>
+
+    <script>
+      // Render the cart contents into the page
+      function renderCart() {
+        const cartItemsDiv = document.getElementById('cart-items');
+        const cartSummaryDiv = document.getElementById('cart-summary');
+        const actionsDiv = document.getElementById('cart-actions');
+        const cart = getCart();
+        cartItemsDiv.innerHTML = '';
+        cartSummaryDiv.innerHTML = '';
+        if (cart.length === 0) {
+          cartItemsDiv.innerHTML = '<p>Your cart is currently empty.</p>';
+          actionsDiv.style.display = 'none';
+          return;
+        }
+        actionsDiv.style.display = 'flex';
+        let total = 0;
+        cart.forEach(item => {
+          total += item.price * item.quantity;
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          itemDiv.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" />
+            <div class="item-details">
+              <h4>${item.title}</h4>
+              <div class="item-price">£${item.price}</div>
+              <div>Subtotal: £${(item.price * item.quantity).toFixed(2)}</div>
+            </div>
+            <div class="item-controls">
+              <label>
+                Qty
+                <input type="number" min="1" value="${item.quantity}" />
+              </label>
+              <button class="btn secondary remove-btn">Remove</button>
+            </div>
+          `;
+          // Handle quantity change
+          const qtyInput = itemDiv.querySelector('input');
+          qtyInput.addEventListener('change', e => {
+            const newQty = parseInt(e.target.value, 10);
+            changeItemQuantity(item.id, isNaN(newQty) ? 1 : newQty);
+            renderCart();
+          });
+          // Handle remove
+          const removeBtn = itemDiv.querySelector('.remove-btn');
+          removeBtn.addEventListener('click', () => {
+            removeFromCart(item.id);
+            renderCart();
+          });
+          cartItemsDiv.appendChild(itemDiv);
+        });
+        cartSummaryDiv.textContent = `Total: £${total.toFixed(2)}`;
+      }
+      document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+  </body>
+</html>
