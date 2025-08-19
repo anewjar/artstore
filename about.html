@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Canvas – About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/cart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">Dream Canvas</a></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="cart.html" class="cart-icon"
+              >Cart <span class="cart-count">0</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="about-container">
+      <h2>About the Artist</h2>
+      <p>
+        Welcome to Dream Canvas, a small studio based in Hemel Hempstead, UK.
+        I'm a self‑taught artist who fell in love with painting as a way of
+        expressing emotion through colour and form. Over the years I’ve
+        developed a style that blends abstract expressionism with
+        contemporary design – sweeping brushstrokes, bold palettes and
+        geometry that hint at landscapes, galaxies and cityscapes. Each
+        painting you see in the shop is a one‑of‑a‑kind original created by
+        me.
+      </p>
+      <p>
+        My goal with this website is to create a space that reflects the
+        spirit of the artwork and makes it easy for you to explore the
+        collection. I believe art should be accessible and personal; if a
+        piece speaks to you, I hope it will bring joy and inspiration into
+        your home.
+      </p>
+      <p>
+        When I’m not in the studio you’ll find me exploring the Chilterns,
+        gathering inspiration from nature’s ever‑changing light and
+        patterns. Thank you for visiting and supporting independent
+        artists!
+      </p>
+
+      <p style="font-size:0.85rem; color:#777; margin-top:1.5rem;">
+        <em>
+          The design of this site draws inspiration from curated art gallery
+          examples which emphasise clean layouts and immersive imagery【983667171507147†L47-L58】.
+        </em>
+      </p>
+
+      <div class="contact-form">
+        <h3>Contact Me</h3>
+        <p>
+          Have a question about a painting, commission requests or just want
+          to say hello? Drop me a message using the form below and I’ll get
+          back to you.
+        </p>
+        <form id="contact-form" onsubmit="return handleContact(event)">
+          <label>
+            Your Name
+            <input type="text" id="contact-name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" id="contact-email" required />
+          </label>
+          <label>
+            Message
+            <textarea id="contact-message" required></textarea>
+          </label>
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+        <p id="contact-thanks" style="display:none; margin-top:1rem;"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2025 Dream Canvas. All rights reserved. Built to bring the
+        artist and collector closer together.
+      </p>
+    </footer>
+
+    <script>
+      function handleContact(event) {
+        event.preventDefault();
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+        if (!name || !email || !message) {
+          alert('Please complete all fields.');
+          return false;
+        }
+        document.getElementById('contact-form').style.display = 'none';
+        const thanks = document.getElementById('contact-thanks');
+        thanks.textContent = `Thank you ${name}! Your message has been sent. I will reply to ${email} soon.`;
+        thanks.style.display = 'block';
+        return false;
+      }
+    </script>
+  </body>
+</html>
